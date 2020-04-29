@@ -1,0 +1,6 @@
+- git:
+    local-name: spoc_lite
+    uri: http://claratyhub.jpl.nasa.gov/maars/spoc_lite.git
+- git:
+    local-name: claraty_comm
+    uri: http://claratyhub.jpl.nasa.gov/maars/claraty_comm.git

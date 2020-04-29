@@ -1,0 +1,139 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Settings of directory and list of images
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% path to directory containing color / grayscale images for training and test
+%DIR_PATH_TO_TRAIN_IMAGES ./sample_images/
+DIR_PATH_TO_TEST_IMAGES ./sample_images/
+
+% path to directory containing annotation images for training and test (test is for evaluation. if no ground truth, can be blank)
+%DIR_PATH_TO_TRAIN_ANNOTAED_IMAGES /media/psf/Promise Pegasus/MarsYard/pgm/2017_0324_AthenaTest_annotation/
+%DIR_PATH_TO_TEST_ANNOTAED_IMAGES /media/psf/Promise Pegasus/MarsYard/pgm/2017_0324_AthenaTest_annotation/
+
+% list of image names for training and test
+%LIST_OF_TRAIN_DATA data/list_marsdata_ALL_path_from_2017_0324_AthenaTest.txt
+LIST_OF_TEST_DATA data/list_marsdata_2017_0622.txt
+
+% output folder
+DIR_PATH_OUTPUT ./result_ave/
+
+% extension
+COLOR_IMAGE_EXTENSION .png
+LABEL_IMAGE_EXTENSION .pgm
+
+% in case that the path to train and the one of test are the same, the code uses n-folds rule. Thus set "n" of n-folds. default is 2
+N_OF_N_FOLDS 4
+
+% save predicted images? 1: yes, 0: no. deault is 0
+SAVE_PREDICTED_IMAGES 1
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Settings of annotation information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% class ID and its color information (RGB 3 channels)
+% class ID : 0, 1, 2, 3, ... (Does not support 0, 1, 3, 6.. / 1, 3, 5,...)
+% (R G B)=(0 0 0) will be ignored
+CLASS 0 51 102 204
+CLASS 1 51 102 51
+CLASS 2 255 255 51
+CLASS 3 255 0 51
+CLASS 4 27 133 184
+
+% specify class ID to calculate ROC curve of the class ID. if no class ID is specified, ROC curve is calculated for all classes and predicted reults are visualized for all classes.
+EVALUATE_CLASS_ID 1
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Settings of feature descriptor
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% color space for feature extraction. choose one from "OPPONENT", "GRAY", "RGB", "HSV", "CIELab", "XYZ". default is "OPPONENT". 
+% e.g.
+% COLOR_SPACE OPPONENT
+COLOR_SPACE OPPONENT
+
+% feature type. choose one / multiple from "AVERAGE", "LBP", "DCT". default is "AVERAGE"
+% e.g.
+% FEATURE_TYPE AVERAGE
+% FEATURE_TYPE LBP
+% FEATURE_TYPE DCT
+FEATURE_TYPE AVERAGE
+%FEATURE_TYPE DCT
+
+% LBP threshold (int). default is 5
+LBP_THRESHOLD 5
+
+% feature normalization. choose one from "NONE", "L1", "L2". defauls is "NONE"
+FEATURE_NORMALIZATION NONE
+
+% window size. default is 25  ("window x window" will be deteremined and features are extracted at each window. NOTE THAT this should be odd number)
+WINDOW_SIZE 25
+
+% window overlap ratio. default is 0.5 (used for test images. 0.0 ~ 1.0, and 0.0 has no overlap)
+WINDOW_OVERLAP 0.5
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Settings of classifier
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% classifier. choose one from "SVM", "LINEARSVM", "RF". default is "SVM"
+CLASSIFIER SVM
+%CLASSIFIER LINEARSVM
+%CLASSIFIER RF
+
+% if you want to load trained model and predict classes of test images, set TRUE. defauls is "FALSE".
+%LOAD_TRAIN_MODEL FALSE
+LOAD_TRAIN_MODEL TRUE
+
+% ---------------------------------------------
+% Parameter settings for SVM
+% ---------------------------------------------
+% kernel type. choose from LINEAR, ORIGINAL, HI, CHI2, RBF, POLY, SIGMOID. default is LINEAR
+KERNEL_TYPE LINEAR
+
+% svm type. choose from C_SVC, NU_SVC. default is C_SVC
+SVM_TYPE C_SVC
+
+% use probability in svm? yes: 1, no: 0. default is 1
+SVM_PROBABILITY 1
+
+% ---------------------------------------------
+% Parameter settings for LINEARSVM
+% ---------------------------------------------
+% solver_type. choose from L2R_LR, L2R_L2LOSS_SVC_DUAL, L2R_L2LOSS_SVC, L2R_L1LOSS_SVC_DUAL, MCSVM_CS, L1R_L2LOSS_SVC, L1R_LR, L2R_LR_DUAL, L2R_L2LOSS_SVR = 11, L2R_L2LOSS_SVR_DUAL, L2R_L1LOSS_SVR_DUAL. default is L2R_LR_DUAL
+SOLVER_TYPE L2R_LR_DUAL
+
+% ---------------------------------------------
+% Parameter settings for SVM & LINEARSVM
+% ---------------------------------------------
+% parameters c and g to tune SVM. defalt is c_start=10, c_end=20, c_gap=2, g_start=-40, g_end=-20, g_gap=2
+C_START 10
+C_END 10
+C_GAP 2
+G_START -40
+G_END -20
+G_GAP 2
+
+% ---------------------------------------------
+% Parameter settings for RF
+% ---------------------------------------------
+% depth settings. defauls is start=25, end=25, gap=20
+MAX_DEPTH_START 25
+MAX_DEPTH_END 25
+MAX_DEPTH_GAP 20
+
+% tree settings. defauls is start=25, end=25, gap=20
+MAX_TREES_START 25
+MAX_TREES_END 45
+MAX_TREES_GAP 20
+
+% ---------------------------------------------
+% Evaluation parameters for ROC curve
+% ---------------------------------------------
+% threshold setup to make ROC curve. default is start=0, end=1, gap=0.01
+ROC_THRESHOLD_START 0.0
+ROC_THRESHOLD_END 1.0
+ROC_THRESHOLD_GAP 0.01
+
+

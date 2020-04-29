@@ -1,0 +1,87 @@
+# 
+# Filename    : Makefile
+# Author      : Yumi IWashita
+# 
+
+#CPP       = g++
+#X_CFLAGS   += -Wall -O3 -DTC_LITTLE_ENDIAN 
+#X_LIBS =  -L/usr/local/lib
+#CXXFLAGS := -g $(shell pkg-config --cflags opencv) -I/usr/include
+CXXFLAGS := $(shell pkg-config --cflags opencv) -I/usr/include
+LDLIBS := $(shell pkg-config --libs opencv) /usr/lib/libann.so
+
+CXXFLAGS += -MMD -std=gnu++11
+
+objects = \
+  main.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/bco_mc.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/bco.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/buo.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/bfo.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/lbp.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/svm.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/libsvm.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/ann.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/pca.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/svm_linear.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/linearsvm/linear.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/linearsvm/tron.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/daxpy.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/ddot.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/dnrm2.o \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/dscal.o
+
+sources = \
+  main.cpp \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/bco_mc.cpp \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/bco.cpp \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/buo.cpp \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/bfo.cpp \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/lbp.cpp \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/svm.cpp \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/libsvm.cpp \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/ann.cpp \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/src/pca.cpp \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/svm_linear.cpp \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/linearsvm/linear.cpp \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/linearsvm/tron.cpp \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/dnrm2.c \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/daxpy.c \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/ddot.c \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/dscal.c
+
+headers = \
+  main.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/include/bco_mc.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/include/bco.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/include/buo.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/include/bfo.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/include/lbp.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/include/bop.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/include/svm.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/include/libsvm.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/include/ann.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ibo_lib/include/pca.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/include/libsvm.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/include/svm_linear.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/include/linearsvm/linear.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/include/linearsvm/tron.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/include/linearsvm/blas/blas.h \
+  /media/psf/Home/Desktop/Tools/git_libs/ml_lib/include/linearsvm/blas/blasp.h
+
+program = \
+  main
+
+# Build Actions
+
+main: $(objects)
+	g++ $(LDFLAGS) $^ $(LDLIBS) -o $@
+
+clean:
+	/bin/rm -f *.o *.a *~
+
+
+# -----------------------------------------------------------------------------
+# End
+# -----------------------------------------------------------------------------
+

@@ -1,0 +1,22 @@
+# Classification model
+use_ave: true
+use_lbp: true
+use_dct: false
+use_intensity: false
+
+# ID for sand class
+sand_id: 1
+
+# Model path relative to package top directory
+#model_name: <defined in launch file>
+
+# Threshold to overlay on the image [0.0, 1.0]
+threshold: 0.4
+
+# Minimum disparity to filter out far pixels
+#   Set negative value to disable it
+min_disparity: -1
+
+# Classifier setting
+classifier_version: 2
+#setting_file: <defined launch file>

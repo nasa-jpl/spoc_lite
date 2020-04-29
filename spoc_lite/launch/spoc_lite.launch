@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <arg name="camera"  default="camera" />
+  <arg name="image"   default="image_rect" />
+  <arg name="respawn" default="false" />
+
+  <node pkg="sand_classifier"
+        type="sand_classifier_node"
+        name="sand_classifier"
+        ns="$(arg camera)"
+        respawn="$(arg respawn)"
+        output="screen">
+    <remap from="image" to="$(arg image)" />
+    <rosparam file="$(find spoc_lite)/config/sand_classifier.yaml" />
+    <rosparam subst_value="true">
+      setting_file: $(find sand_classifier)/spoc_lite/setting_svm_ave_lbp.txt
+      model_name: $(find sand_classifier)/models/svm_type_0_c_20_g_-20_w_25_pyramid_1_AVE_LBP_new_0625.model
+    </rosparam>
+  </node>
+
+</launch>

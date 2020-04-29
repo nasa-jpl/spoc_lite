@@ -1,0 +1,25 @@
+Replaced
+  //mc_label mc_label_list;
+  struct_bco_label bco_label_list;
+
+  //mc_image mc_src;
+  Mat mat_src;
+
+  //mc_label_image mc_label_src;
+  Mat mat_label;
+
+
+now checking
+mc_
+
+ToDo
+ok SetFeature_BalancedLoad
+ok mc_assign_label
+ok mc_convert_to_opposite_color
+ok calc_prob_and_get_id_each_pixel
+ok evaluate_target_id
+pl visualize_predicted_target_id
+ok SetFeature (test)
+ok SetFeature (train)
+
+ok extractFeatures <- change from BGR to GRB

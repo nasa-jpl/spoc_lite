@@ -1,0 +1,87 @@
+# 
+# Filename    : Makefile
+# Author      : Yumi IWashita
+# 
+
+#CPP       = g++
+#X_CFLAGS   += -Wall -O3 -DTC_LITTLE_ENDIAN 
+#X_LIBS =  -L/usr/local/lib
+#CXXFLAGS := -g $(shell pkg-config --cflags opencv) -I/usr/include
+CXXFLAGS := $(shell pkg-config --cflags opencv) -I/usr/include
+LDLIBS := $(shell pkg-config --libs opencv) /usr/lib/libann.so
+
+CXXFLAGS += -MMD -std=gnu++11
+
+objects = \
+  main.o \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/bco_mc.o \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/bco.o \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/buo.o \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/bfo.o \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/lbp.o \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/svm.o \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/libsvm.o \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/ann.o \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/pca.o \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/svm_linear.o \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/linearsvm/linear.o \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/linearsvm/tron.o \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/daxpy.o \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/ddot.o \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/dnrm2.o \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/dscal.o
+
+sources = \
+  main.cpp \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/bco_mc.cpp \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/bco.cpp \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/buo.cpp \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/bfo.cpp \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/lbp.cpp \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/svm.cpp \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/libsvm.cpp \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/ann.cpp \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/src/pca.cpp \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/svm_linear.cpp \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/linearsvm/linear.cpp \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/linearsvm/tron.cpp \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/dnrm2.c \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/daxpy.c \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/ddot.c \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/src/linearsvm/blas/dscal.c
+
+headers = \
+  main.h \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/include/bco_mc.h \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/include/bco.h \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/include/buo.h \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/include/bfo.h \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/include/lbp.h \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/include/bop.h \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/include/svm.h \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/include/libsvm.h \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/include/ann.h \
+  /home/yumi/Desktop/Tools/git_libs/ibo_lib/include/pca.h \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/include/libsvm.h \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/include/svm_linear.h \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/include/linearsvm/linear.h \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/include/linearsvm/tron.h \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/include/linearsvm/blas/blas.h \
+  /home/yumi/Desktop/Tools/git_libs/ml_lib/include/linearsvm/blas/blasp.h
+
+program = \
+  main
+
+# Build Actions
+
+main: $(objects)
+	g++ $(LDFLAGS) $^ $(LDLIBS) -o $@
+
+clean:
+	/bin/rm -f *.o *.a *~
+
+
+# -----------------------------------------------------------------------------
+# End
+# -----------------------------------------------------------------------------
+

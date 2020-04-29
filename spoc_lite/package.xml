@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>spoc_lite</name>
+  <version>1.0.0</version>
+  <description>The spoc_lite package</description>
+
+  <maintainer email="otsu@jpl.nasa.gov">otsu</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>sand_classifier</exec_depend>
+  <exec_depend>ortho_projector</exec_depend>
+
+</package>

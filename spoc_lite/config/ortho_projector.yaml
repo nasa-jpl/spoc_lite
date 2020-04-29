@@ -1,0 +1,18 @@
+# Map dimension
+length: 50
+width: 50
+cell_size: 0.125
+
+# Map merging mode
+# merge_mode:
+#   FOT (First on Top)
+#   LOT (Last on Top)
+#   MAX (Preserve highest value)
+#   MIN (Preserve lowest value)
+merge_mode: "LOT"
+
+# Valid image regions (in pixels)
+margin_top: 170
+margin_bottom: 20
+margin_left: 50
+margin_right: 50

@@ -1,0 +1,28 @@
+<launch>
+
+  <!--
+       Publish dummy TFs
+  -->
+
+  <node
+    pkg="tf"
+    type="static_transform_publisher"
+    name="rnav2cam"
+    args="0.4 -0.15 -1.4 1.57 0 1.04 RNAV NCAML 100" >
+  </node>
+
+  <node
+    pkg="tf"
+    type="static_transform_publisher"
+    name="map2rnav"
+    args="25 25 0 0 0 0 MAP RNAV 100" >
+  </node>
+
+  <node
+    pkg="tf"
+    type="static_transform_publisher"
+    name="rnav2root"
+    args="0 0 0 0 0 3.1415 RNAV ROOT 100" >
+  </node>
+
+</launch>

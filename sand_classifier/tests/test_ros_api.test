@@ -1,0 +1,8 @@
+<launch>
+  <test test-name="test_ros_api" pkg="sand_classifier" type="test_ros_api">
+    <param name="model_name" value="$(find sand_classifier)/models/svm_type_0_c_20_g_-20_w_25_pyramid_1_AVE_LBP_new_0625.model"/>
+    <param name="setting_file" value="$(find sand_classifier)/spoc_lite/setting_svm_ave_lbp.txt"/>
+    <param name="threshold" value="0.8"/>
+    <param name="sand_id" value="1"/>
+  </test>
+</launch>

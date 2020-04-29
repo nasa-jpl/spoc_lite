@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <arg name="camera"    default="camera" />
+  <arg name="image"     default="image_rect" />
+  <arg name="threshold" default="0.4" />      <!-- [0.0, 1.0] -->
+  <arg name="manager"   default="spoc_manager" />
+
+  <group ns="$(arg camera)" >
+
+    <!-- Nodelet manager -->
+    <node pkg="nodelet" type="nodelet" name="$(arg manager)" args="manager" output="screen"/>
+
+    <!-- Terrain classification -->
+    <node pkg="nodelet"
+          type="nodelet"
+          name="sand_classifier" 
+          args="load sand_classifier/SandClassifierNodelet $(arg manager)" >
+      <remap    from="image" to="$(arg image)" />
+      <rosparam file="$(find spoc_lite)/config/sand_classifier.yaml" />
+      <rosparam subst_value="true">
+        setting_file: $(find sand_classifier)/spoc_lite/setting_svm_ave_lbp.txt
+        model_name: $(find sand_classifier)/models/svm_type_0_c_20_g_-20_w_25_pyramid_1_AVE_LBP_new_0625.model
+      </rosparam>
+    </node>
+    
+    <!-- Image projection assuming flat ground -->
+    <node pkg="nodelet"
+          type="nodelet"
+          name="ortho_projector" 
+          args="load ortho_projector/OrthoProjectorNodelet $(arg manager)" >
+      <remap from="image"       to="image_probability" />
+      <remap from="camera_info" to="camera_info" />
+      <remap from="map"         to="map/grid_float" />
+      <rosparam command="load"  file="$(find spoc_lite)/config/ortho_projector.yaml" />
+    </node>
+
+    <!-- Convert the map message type -->
+    <node pkg="nodelet"
+          type="nodelet"
+          name="terrain_mapper"
+          args="load ortho_projector/TerrainMapperNodelet $(arg manager)" >
+      <remap from="map_float" to="map/grid_float" />
+      <remap from="map_int"   to="map/grid_int" />
+      <remap from="map"       to="map" />
+      <param name="threshold" value="$(arg threshold)" />
+    </node>
+
+  </group>
+
+</launch>

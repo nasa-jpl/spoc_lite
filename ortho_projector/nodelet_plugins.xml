@@ -1,0 +1,12 @@
+<library path="lib/libortho_projector_nodelet">
+  <class name="ortho_projector/OrthoProjectorNodelet"
+         type="ortho_projector::OrthoProjectorNodelet"
+         base_class_type="nodelet::Nodelet">
+  </class>
+</library>
+<library path="lib/libterrain_mapper_nodelet">
+  <class name="ortho_projector/TerrainMapperNodelet"
+         type="ortho_projector::TerrainMapperNodelet"
+         base_class_type="nodelet::Nodelet">
+  </class>
+</library>
